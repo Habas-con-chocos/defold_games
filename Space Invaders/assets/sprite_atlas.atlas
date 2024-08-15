@@ -1,0 +1,22 @@
+images {
+  image: "/assets/Graphics/alien_1.png"
+}
+images {
+  image: "/assets/Graphics/alien_2.png"
+}
+images {
+  image: "/assets/Graphics/alien_3.png"
+}
+images {
+  image: "/assets/Graphics/mystery.png"
+}
+images {
+  image: "/assets/Graphics/obstacle.png"
+}
+images {
+  image: "/assets/Graphics/spaceship.png"
+}
+images {
+  image: "/assets/Graphics/laser.png"
+}
+extrude_borders: 2

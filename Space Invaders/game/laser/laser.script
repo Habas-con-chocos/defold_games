@@ -1,0 +1,73 @@
+--[[ 
+
+LASER script
+
+script related to the laser, this object is used by the player and enemies to shoot lasers
+
+property is_going_up sets the direction of the laser
+- 1: the laser goes up (shoot by the player)
+- -1: the laser goes down (shoot by an enemy)
+
+If a laser touch an enemy,  enemy and laser will be remove from the game when the laser is going update
+
+If a laser touch the player, game over
+
+If a laser touch an obstacle, obstacle and laser dissapear
+
+]]--
+
+
+-- Properties
+go.property("direction", 1)
+
+-- CONSTANTS
+
+local VELOCITY = 400
+local SCREEN_HEIGHT = 640
+
+-- HASHES
+
+function init(self)
+	self.width = go.get("#sprite", "size.x")
+	self.height = go.get("#sprite", "size.y")
+end
+
+function final(self)
+	-- Add finalization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function update(self, dt)
+	local position = go.get_position()
+	local center_y = self.height / 2
+	position.y = position.y + (self.direction * VELOCITY * dt)
+	
+	if position.y - center_y < 0 or position.y + center_y > SCREEN_HEIGHT then
+		print("Laser goes away")
+		go.delete()
+	end
+	go.set_position(position)
+	
+end
+
+function fixed_update(self, dt)
+	-- This function is called if 'Fixed Update Frequency' is enabled in the Engine section of game.project
+	-- Can be coupled with fixed updates of the physics simulation if 'Use Fixed Timestep' is enabled in
+	-- Physics section of game.project
+	-- Add update code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end
+
+function on_reload(self)
+	-- Add reload-handling code here
+	-- Learn more: https://defold.com/manuals/hot-reload/
+	-- Remove this function if not needed
+end
